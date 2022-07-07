@@ -1,0 +1,19 @@
+# FROM python:3.9
+# RUN mkdir /usr/src/app/
+# COPY . /usr/src/app/
+# WORKDIR /usr/src/app/
+# EXPOSE 5000
+# RUN pip install -r requirements.txt
+# CMD ["python", "app.py"]
+
+# This Dockerfile builds the API only.
+
+FROM python:3.9
+WORKDIR /app
+
+COPY backend/requirements.txt backend/app.py backend/.flaskenv backend/cert-manager.db backend/data_caller.py ./
+RUN pip install -r ./requirements.txt
+ENV FLASK_ENV production
+
+EXPOSE 5000
+CMD ["gunicorn", "-b", ":5000", "app:app"]

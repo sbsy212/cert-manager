@@ -1,3 +1,14 @@
+## Deploy in docker
+
+make sure you have docker on your machine
+use the
+
+```
+docker-compose up
+```
+
+command and both containers should start.
+
 ## Deploy locally
 
 you should have on your machine:
